@@ -108,12 +108,20 @@ def gameLoop():
                 player1_alive = False
             if [x1, y1] in snake_List1[:-1] or [x1, y1] in snake_List2:
                 player1_alive = False
+        else:
+            x1 = -1
+            y1 = -1
+            snake_List1 = []
 
         if player2_alive:
             if x2 >= dis_width or x2 < 0 or y2 >= dis_height or y2 < 0:
                 player2_alive = False
             if [x2, y2] in snake_List2[:-1] or [x2, y2] in snake_List1:
                 player2_alive = False
+        else:
+            x2 = -1
+            y2 = -1
+            snake_List2 = []
 
         if not player1_alive and not player2_alive:
             game_close = True
@@ -136,10 +144,12 @@ def gameLoop():
 
         dis.fill(BACK_GROUND)
         pygame.draw.rect(dis, APPLE, [foodx, foody, snake_block, snake_block])
-        pygame.draw.rect(dis, white, [foodx2, foody2, snake_block, snake_block])
+        pygame.draw.rect(dis, APPLE, [foodx2, foody2, snake_block, snake_block])
 
         if player1_alive:
             our_snake(snake_block, snake_List1, black)
+
+
         if player2_alive:
             our_snake(snake_block, snake_List2, red)
 
